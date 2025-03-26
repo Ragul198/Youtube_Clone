@@ -1,0 +1,57 @@
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 6px;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.2);
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    background-color: white;
+    
+}
+
+.navrbar-left .menu{
+   width: 20px;
+   height: 15px;
+   margin-right: 30px;
+   margin-left: 25px;
+
+}
+.navrbar-left .logo{
+    width: 135px;
+}
+
+.navbar-middle {
+    border: 1px solid #5a5a5a78;
+    border-radius: 30px;
+    width: 440px;
+    height: 35PX;
+    padding: 10px;
+    margin-right: 40px;
+    
+}
+.navbar-middle input{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+.navbar-middle img{
+    width: 25px;
+    padding: 4px;
+}
+
+.navbar-righ .icon img{
+    width: 25px;
+    margin-right: 25px;
+
+}
+.navbar-righ .profile{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+

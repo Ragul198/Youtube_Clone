@@ -1,0 +1,11 @@
+.container {
+    padding-left: 15%;
+    padding-top: 4%;
+    background-color: #f9f9f9;
+    
+}
+.container__active{
+    padding-left: 5%;
+    
+
+}

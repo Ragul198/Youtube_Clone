@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+body{
+  color: #5a5a5a;
+  font-family:sans-serif;
+}
+
+.flex_div{
+    display:flex; 
+     
+    align-items:center; 
+    
+}
+img{
+  cursor: pointer;
+}
+
+
+a{
+  text-decoration:none;
+}

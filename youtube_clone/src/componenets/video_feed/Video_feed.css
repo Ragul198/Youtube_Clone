@@ -1,0 +1,31 @@
+.video_cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    column-gap: 20px;
+    row-gap: 30px;
+    padding: 2%;
+}
+
+.video_cards .card img{
+    width: 100%;
+    border-radius: 5px;
+    
+}
+.video_cards .card h2{
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    cursor: pointer;
+}
+.video_cards .card h3{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(77, 76, 76);
+    margin-top: 5px;
+}
+.video_cards .card p{
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+    margin-top: 5px;
+}

@@ -4,7 +4,7 @@
     height: 100vh;
     padding-left:2%;
     position: fixed;
-    padding-top: 80px;
+    padding-top: 30px;
     padding-right: 2px;
     border-right: 1px solid #5454541e;
     box-shadow: 0 0 0 10px rgba(10px, 0, 0, 0.2);
@@ -76,10 +76,10 @@
 .active  h3{
     display: none;
 }
-::-webkit-scrollbar{
+
+.sidebar::-webkit-scrollbar{
     display: none;
 }
-
 
 
 /* .minibar{

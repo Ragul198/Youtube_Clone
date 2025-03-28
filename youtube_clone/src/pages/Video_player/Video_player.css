@@ -9,3 +9,13 @@
     flex-wrap:wrap;
     
 }
+@media (max-width: 850px) {
+    .play-container{
+   
+        padding-left:2% ;
+        padding-right:1%;
+        
+        
+    }
+    
+}

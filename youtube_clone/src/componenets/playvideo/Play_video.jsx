@@ -54,8 +54,8 @@ const Play_video = () => {
   return (
     <div className="video-container">
       <iframe
-        width="853"
-        height="480"
+        width="553"
+        height="280"
         src={`https://www.youtube.com/embed/${videoID}?autoplay=1`}
         title="React Projects For Beginners | Master React.js In One Video | React Projects for Resume"
         frameBorder="0"

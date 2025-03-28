@@ -31,3 +31,18 @@
     color: gray;
     margin-top: 5px;
 }
+
+@media (max-width: 1000px) {
+    .video_cards .card p{
+        font-size: 12px;
+        
+    }
+    .video_cards .card h2{
+        font-size: 14px;
+        
+    }
+    .video_cards .card h3{
+        font-size: 13px;
+        
+    }
+}

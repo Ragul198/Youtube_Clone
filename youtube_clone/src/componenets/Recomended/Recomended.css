@@ -18,6 +18,7 @@
 .video .info{
     
     flex-basis: 49%;
+    margin-left: 10px;
 }
 .video .info h3{
     font-size: 13px;
@@ -36,4 +37,26 @@
 }
 .active_video{
     display: none;
+}
+
+@media (max-width: 1200px) {
+    .video .info h3{
+        font-size: 12px;
+        
+    }
+    .video .info h4{
+        font-size: 13px;
+        
+    }
+    .video .info p{
+        font-size: 11px;
+        
+    }
+    
+}
+@media (max-width: 1050px) {
+   .recomended{
+        display: none;
+    }
+    
 }

@@ -2,8 +2,9 @@
     flex-basis: 69%;
     
 }
-.video-container video{
+.video-container iframe{
     width: 100%;
+    height:37vw;
 }
 .video-container h3{
     margin-top: 10px;
@@ -111,6 +112,9 @@
 }
 .comments p{
     font-size: 14px;
+    
+    
+    
 }
 .comment_interaction{
     display: flex;

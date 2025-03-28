@@ -14,7 +14,8 @@ const App = () => {
   
   <Routes>
     <Route path='/' element={<Home sidebar={sidebar} ></Home>}></Route>
-    <Route path='/video/:video/:id' element={<Video_player/>}></Route>
+    <Route path="/video/:catagoryID/:videoID" element={<Video_player></Video_player>} />
+
   </Routes>
   
   </>

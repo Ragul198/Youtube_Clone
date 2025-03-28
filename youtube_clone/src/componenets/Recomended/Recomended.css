@@ -1,5 +1,7 @@
 .recomended{
-    flex-basis: 30%;
+    flex-basis: 29%; /* Remaining space */
+    height: 100vh;
+    
 }
 .video{
     display: flex;

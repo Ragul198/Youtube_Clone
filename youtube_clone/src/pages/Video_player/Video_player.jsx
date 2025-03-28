@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Video_player.css'
 import Play_video from '../../componenets/playvideo/Play_video'
 import Recomended from '../../componenets/Recomended/Recomended'
-const Video_player = () => {
+import { useParams } from 'react-router-dom'
+const   Video_player = () => {
+  const {catagoryID,videoID}=useParams();
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
   return (
     <div className='play-container'>
-      <Play_video/>
+      <Play_video catagoryID={catagoryID} videoID={videoID}/>
       <Recomended/>
       
     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './playvideo.css'
 import video from '../../assets/video.mp4'
 import like from '../../assets/like.png'
@@ -7,15 +7,60 @@ import save from '../../assets/save.png'
 import share from '../../assets/share.png'
 import jack from '../../assets/jack.png'
 import user from '../../assets/user_profile.jpg'
-const Play_video = () => {
+import { API_KEY } from '../../data'
+import { view_convertor }from '../../data'
+import moment from 'moment'
+
+const Play_video = ({videoID}) => {
+ const [api ,setapi]=useState(null);
+ const [channel_data ,setchannel_data]=useState(null);
+ const [comment_data ,setcomment_data]=useState([]);
+ const fetch_video_details = async()=>{
+  const video_data_url= `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoID}&key=${API_KEY}`;
+  await fetch(video_data_url)
+   .then((res)=> res.json())
+   .then((data)=> setapi(data.items[0]))
+ }
+
+ const fetch_channel_details = async()=>{
+  const channel_data_url=`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${api.snippet.channelId}&key=${API_KEY}` ;
+  await fetch(channel_data_url)
+   .then((res)=> res.json())
+   .then((data)=> setchannel_data(data.items[0]))
+ }
+ const fetch_comment_details = async()=>{
+  const comment_data_url=`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=200&videoId=${videoID}&key=${API_KEY}` ;
+  await fetch(comment_data_url)
+   .then((res)=> res.json())
+   .then((data)=> setcomment_data(data.items))
+ }
+ 
+ useEffect(()=>{
+  fetch_video_details()
+ },[]);
+ useEffect(()=>{
+  if(api){
+  fetch_channel_details();
+  fetch_comment_details();
+  }
+  
+ },[api]);
+
+ console.log(comment_data);
+ 
+  
+  
+
+
   return (
     <div className="video-container">
-      <video src={video} autoPlay controls className="video"></video>
-      <h3>VIdeo title is this guys</h3>
+      {/* <video src={video} autoPlay controls className="video"></video> */}
+      <iframe width="853" height="480" src={`https://www.youtube.com/embed/${videoID}?autoplay=1`} title="React Projects For Beginners | Master React.js In One Video | React Projects for Resume" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+      <h3>{api?api.snippet.title:"title is not avilable"}</h3>
       <div className="video_info">
-        <p>124m views &bull; 3 days ago</p>
+        <p>{api?view_convertor(api.statistics.viewCount):"no data avilable"} views &bull; {api?moment(api.snippet.publishedAt).fromNow():"no data available"} </p>
         <div >
-        <span><img src={like} alt="" />123455</span>
+        <span><img src={like} alt="" />{api?view_convertor(api.statistics.likeCount):"no data avilable"}</span>
           <span><img src={dislike} alt="" />123455</span>
           <span><img src={share} alt="" />share</span>
           <span><img src={save} alt="" />save</span>
@@ -24,80 +69,41 @@ const Play_video = () => {
       <hr />
       <div className="publisher">
         
-        <img src={jack} alt="" />
+        <img src={channel_data?channel_data.snippet.thumbnails.medium.url:jack} alt="" />
         <div>
-          <p>RagulA</p>
-          <span>1M subcribers</span>
+          <p>{api?api.snippet.channelTitle:"title is not avilable"}</p>
+          <span>{channel_data?view_convertor(channel_data.statistics.subscriberCount) :"102"} Subscribers</span>
         </div>
         
         <span><button>Subscribe</button></span>
         
       </div>
       <div className="vid_description">
-        <p>This is the description of the video</p>
-        <p>its real a good movie alright !</p>
+        <p>Description </p>
+        <p>{(api?api.snippet.description:"title is not avilable").slice(0,250)}</p>
       <hr />
-      <h4> 26 Comments</h4>
-      <div className="comments">
-          
-            <img src={user} alt="" />
+      <h4> {api?view_convertor(api.statistics.commentCount):"no data avilable"} Comments</h4>
+        {comment_data.map((item,index)=>{
+          return(
+            <div className="comments" key={index} >
+            <img src={item.snippet.topLevelComment.snippet.authorProfileImageUrl} alt="" />
             <div>
-            <h3>@Pew di pie <span>(1 hour ago)</span></h3>
-            <p>an we start a new ###??? #bringbackcinema , we need to be at theaters when this drops! just like the good ole days🔥, i can’t wait for this film! i think 2025 overall will have a ton of great movies, hopefully we see an upwards trend</p>
+            <h3>{item.snippet.topLevelComment.snippet.authorDisplayName} <span>({moment(item.snippet.topLevelComment.snippet.updatedAt).fromNow()})</span></h3>
+            <p>{item.snippet.topLevelComment.snippet.textDisplay} </p>
+            {console.log(item.snippet.topLevelComment.snippet.textDisplay)}
             <div className="comment_interaction">
-              <span><img src={like} alt="" />12</span>
-              <span><img src={dislike} alt="" />12</span>
+              <span><img src={like} alt="" />{item.snippet.topLevelComment.snippet.likeCount}</span>
+              <span><img src={dislike} alt="" /></span>
               </div>
             </div>
-            </div>
-            <div className="comments">
-          
-            <img src={user} alt="" />
-            <div>
-            <h3>@Pew di pie <span>(1 hour ago)</span></h3>
-            <p>an we start a new ###??? #bringbackcinema , we need to be at theaters when this drops! just like the good ole days🔥, i can’t wait for this film! i think 2025 overall will have a ton of great movies, hopefully we see an upwards trend</p>
-            <div className="comment_interaction">
-              <span><img src={like} alt="" />12</span>
-              <span><img src={dislike} alt="" />12</span>
-              </div>
-            </div>
-            </div>
-            <div className="comments">
-          
-            <img src={user} alt="" />
-            <div>
-            <h3>@Pew di pie <span>(1 hour ago)</span></h3>
-            <p>an we start a new ###??? #bringbackcinema , we need to be at theaters when this drops! just like the good ole days🔥, i can’t wait for this film! i think 2025 overall will have a ton of great movies, hopefully we see an upwards trend</p>
-            <div className="comment_interaction">
-              <span><img src={like} alt="" />12</span>
-              <span><img src={dislike} alt="" />12</span>
-              </div>
-            </div>
-            </div>
-            <div className="comments">
-          
-            <img src={user} alt="" />
-            <div>
-            <h3>@Pew di pie <span>(1 hour ago)</span></h3>
-            <p>an we start a new ###??? #bringbackcinema , we need to be at theaters when this drops! just like the good ole days🔥, i can’t wait for this film! i think 2025 overall will have a ton of great movies, hopefully we see an upwards trend</p>
-            <div className="comment_interaction">
-              <span><img src={like} alt="" />12</span>
-              <span><img src={dislike} alt="" />12</span>
-              </div>
-            </div>
-            </div>
-            <div className="comments">
-          
-            <img src={user} alt="" />
-            <div>
-            <h3>@Pew di pie <span>(1 hour ago)</span></h3>
-            <p>an we start a new ###??? #bringbackcinema , we need to be at theaters when this drops! just like the good ole days🔥, i can’t wait for this film! i think 2025 overall will have a ton of great movies, hopefully we see an upwards trend</p>
-            <div className="comment_interaction">
-              <span><img src={like} alt="" />12</span>
-              <span><img src={dislike} alt="" />12</span>
-              </div>
-            </div>
-            </div>
+        </div>
+          )
+        })}
+        
+     
+        
+      
+            
           </div>
           
       </div>

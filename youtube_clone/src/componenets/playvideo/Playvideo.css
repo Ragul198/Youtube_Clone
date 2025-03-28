@@ -1,5 +1,7 @@
 .video-container{
     flex-basis: 69%;
+    width: 69%;
+    
     
 }
 .video-container iframe{

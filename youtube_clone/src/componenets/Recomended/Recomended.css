@@ -1,6 +1,6 @@
 .recomended{
     flex-basis: 29%; /* Remaining space */
-    height: 100vh;
+    /* height: 100vh; */
     
 }
 .video{
@@ -33,4 +33,7 @@
 .video .info p{
     font-size: 12px;
     color: #535353;
+}
+.active_video{
+    display: none;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './side_bar.css';
+import './Side_bar.css';
 import home from '../../assets/home.png';
 import gaming from '../../assets/game_icon.png';
 import automobiles from '../../assets/automobiles.png';

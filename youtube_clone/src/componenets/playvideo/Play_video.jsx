@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // Import useParams
-import './playvideo.css';
+import './Playvideo.css';
 import video from '../../assets/video.mp4';
 import like from '../../assets/like.png';
 import dislike from '../../assets/dislike.png';

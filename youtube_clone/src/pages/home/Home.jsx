@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './home.css'
+import './Home.css'
 import Navbar from '../../componenets/navbar/Navbar'
 import Sidebar from '../../componenets/sidebar/Side_bar'
 import Video_feed from '../../componenets/video_feed/Video_feed'
